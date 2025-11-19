@@ -1,0 +1,5 @@
+To analyze your CTF image, please run this command in your terminal:
+
+cp /Users/saumyadoogar/Downloads/stegno_1.jpg /workspace/stegno_1.jpg
+
+Then I'll automatically analyze it for hidden flags.
