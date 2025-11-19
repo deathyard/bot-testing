@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Chat server</title>
+  <style>
+    body { font-family: monospace; background: #111; color: #ddd; margin: 2em; }
+    input, button { background: #222; color: #ddd; border: 1px solid #555; padding: 5px; margin: 3px; }
+    #log { border: 1px solid #333; padding: 10px; height: 200px; overflow-y: auto; background: #000; }
+    button:disabled { background: #333; color: #777; cursor: not-allowed; }
+  </style>
+</head>
+<body>
+  <h2>Chat Server...</h2>
+  <div>
+    Username: <input id="username" value="akaza" />
+    <button id="login" disabled>Login</button>
+  </div>
+  <br>
+  <div>
+    Message: <input id="msg" placeholder="Type a message..." />
+    <button id="send" disabled>Send</button>
+  </div>
+  <br>
+  <pre id="log"></pre>
+
+  <script>
+    const log = (msg) => {
+      const box = document.getElementById("log");
+      box.textContent += msg + "\n";
+      box.scrollTop = box.scrollHeight;
+    };
+
+    const loginBtn = document.getElementById("login");
+    const sendBtn = document.getElementById("send");
+
+    //const ws = new WebSocket("ws://" + window.location.hostname + ":8081/ws");
+    
+    // Detect correct protocol (ws:// or wss://)
+    const hostname = window.location.hostname;
+    const wsProtocol = window.location.protocol === "https:" ? "wss://" : "ws://";
+    const wsPort = window.location.protocol === "https:" ? "" : ":8081";
+    const ws = new WebSocket(wsProtocol + hostname + wsPort + "/ws");
+
+
+
+
+    ws.onopen = () => {
+      log("✅ Connected to Chat Server...");
+      loginBtn.disabled = false;
+      sendBtn.disabled = false;
+    };
+
+    ws.onmessage = (event) => {
+      log("⬅️ " + event.data);
+    };
+
+    ws.onclose = () => {
+      log("❌ Chat Server disconnected.");
+      loginBtn.disabled = true;
+      sendBtn.disabled = true;
+    };
+
+    ws.onerror = (err) => {
+      log("❌ WebSocket error: " + (err.message || err));
+    };
+
+    loginBtn.onclick = () => {
+      if (ws.readyState === WebSocket.OPEN) {
+        const username = document.getElementById("username").value;
+        ws.send(JSON.stringify({ action: "login", username }));
+        log("➡️ Sent login request for " + username);
+      }
+    };
+
+    sendBtn.onclick = () => {
+      if (ws.readyState === WebSocket.OPEN) {
+        const msg = document.getElementById("msg").value;
+        ws.send(JSON.stringify({ action: "echo", payload: msg }));
+        log("➡️ Sent: " + msg);
+      }
+    };
+  </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--- Ly8gdHJ5IGdldF9mbGFnCg== -->
