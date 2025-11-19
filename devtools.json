@@ -1,0 +1,13 @@
+{
+  "name": "Discord Bot DevTools",
+  "version": "1.0.0",
+  "description": "DevTools configuration for Discord bot",
+  "channel": {
+    "id": "656927054125858836",
+    "name": "ctf-channel",
+    "flag": "flag{hidden_in_devtools_config}"
+  },
+  "config": {
+    "bot_token": "NjU2OTI3MDU0MTI1ODU4ODM2.Xfp0og.nYWB_S5pQhswE9Xg0VVChhMtCZk"
+  }
+}
