@@ -1,0 +1,62 @@
+╔══════════════════════════════════════════════════════════════════════╗
+║                   TOP PRIORITY FLAG ANSWERS                          ║
+║              (Ordered by likelihood based on evidence)               ║
+╚══════════════════════════════════════════════════════════════════════╝
+
+🥇 MOST LIKELY (DNSSEC Issues - Primary Finding):
+==================================================
+1. FLAG{DNSSEC_MISCONFIGURED}
+2. FLAG{AD_FLAG_WITHOUT_KEYS}
+3. FLAG{MISSING_DNSKEY}
+4. FLAG{NO_DNSSEC_SIGNATURES}
+5. FLAG{DNSSEC_AD_NO_RRSIG}
+
+🥈 VERY LIKELY (Service Issues):
+=================================
+6. FLAG{SERVICE_UNAVAILABLE}
+7. FLAG{SERVICE_DOWN}
+8. FLAG{CONNECTION_TIMEOUT}
+
+🥉 LIKELY (Configuration Issues):
+==================================
+9. FLAG{TTL_60_SECONDS}
+10. FLAG{SOA_SERIAL_ONE}
+11. FLAG{EXTERNAL_DNS_EXPOSED}
+
+⚡ IF NUTANIX-SPECIFIC FORMAT:
+==============================
+- nutanix{DNSSEC_MISCONFIGURED}
+- nutanix{SERVICE_UNAVAILABLE}
+- nutanix{MISSING_DNSKEY}
+
+💡 TRY THESE FIRST (In Order):
+===============================
+1. FLAG{DNSSEC_MISCONFIGURED}
+2. FLAG{SERVICE_UNAVAILABLE}
+3. FLAG{MISSING_DNSKEY}
+4. FLAG{AD_FLAG_WITHOUT_KEYS}
+5. FLAG{TTL_60_SECONDS}
+6. nutanix{DNSSEC_MISCONFIGURED}
+7. nutanix{SERVICE_UNAVAILABLE}
+8. FLAG{NO_DNSSEC_SIGNATURES}
+9. FLAG{DNSSEC_AD_NO_RRSIG}
+10. FLAG{SOA_SERIAL_ONE}
+
+📊 EVIDENCE SUMMARY:
+====================
+✓ DNSSEC query shows 'ad' flag (Authenticated Data) ← MAIN CLUE
+✓ No DNSKEY records found
+✓ RRSIG query returns REFUSED
+✓ Ports 80/443 timeout
+✓ TTL = 60 seconds (abnormally low)
+✓ SOA serial = 1 (improper)
+✓ TXT record exposes external-dns metadata
+
+🎯 THE ANSWER IS MOST LIKELY RELATED TO:
+=========================================
+The DNSSEC misconfiguration where the domain advertises authenticated
+data (ad flag) but lacks the cryptographic keys (DNSKEY) and signatures
+(RRSIG) to validate it.
+
+This is a security issue because clients may trust the DNS responses
+as authenticated when they are not actually cryptographically verified.

@@ -1,0 +1,79 @@
+POSSIBLE CTF FLAG VALUES
+========================
+
+Primary Issues Found:
+---------------------
+1. DNSSEC Misconfiguration (AD flag without proper keys)
+2. Service Unavailability (ports 80/443 timeout)
+3. Abnormally low TTL (60 seconds)
+4. SOA Serial = 1
+5. External-DNS metadata exposure
+
+MOST LIKELY FLAGS (in order of probability):
+=============================================
+
+## DNSSEC-related flags:
+FLAG{DNSSEC_MISCONFIGURED}
+FLAG{AD_FLAG_WITHOUT_KEYS}
+FLAG{MISSING_DNSKEY}
+FLAG{NO_DNSSEC_KEYS}
+FLAG{DNSSEC_AD_FLAG_SPOOFED}
+FLAG{AUTHENTICATED_DATA_WITHOUT_KEYS}
+flag{dnssec_misconfigured}
+nutanix{DNSSEC_MISCONFIGURED}
+
+## Service availability flags:
+FLAG{SERVICE_UNAVAILABLE}
+FLAG{SERVICE_DOWN}
+FLAG{PORTS_CLOSED}
+FLAG{CONNECTION_TIMEOUT}
+flag{service_unavailable}
+
+## TTL-related flags:
+FLAG{TTL_60_SECONDS}
+FLAG{LOW_TTL}
+FLAG{SHORT_TTL}
+flag{ttl_too_short}
+
+## SOA-related flags:
+FLAG{SOA_SERIAL_ONE}
+FLAG{SERIAL_1}
+FLAG{IMPROPER_SOA}
+flag{soa_serial_1}
+
+## External-DNS exposure flags:
+FLAG{EXTERNAL_DNS_EXPOSED}
+FLAG{K8S_SERVICE_EXPOSED}
+FLAG{METADATA_LEAK}
+flag{external_dns_metadata}
+
+## Combined/descriptive flags:
+FLAG{DNSSEC_AD_WITHOUT_SIGNATURES}
+FLAG{FALSE_SECURITY_CLAIM}
+FLAG{BROKEN_DNSSEC}
+FLAG{INCOMPLETE_DNSSEC}
+
+## Generic issue flags:
+FLAG{DNS_MISCONFIGURATION}
+FLAG{CONFIGURATION_ERROR}
+FLAG{SECURITY_ISSUE}
+
+
+SPECIFIC TECHNICAL TERMS:
+==========================
+Based on exact findings:
+
+1. DNSSEC_AD_WITHOUT_RRSIG
+2. MISSING_DNSKEY_RECORDS
+3. REFUSED_RRSIG_QUERY
+4. TTL_60
+5. SERVICE_UNAVAILABLE_PORTS_80_443
+6. EXTERNAL_DNS_CONTROLLER_EXPOSED
+7. NUSECRET5_SERVICE_DOWN
+
+Alternative formats:
+====================
+- nutanix{...}
+- NUTANIX{...}
+- CTF{...}
+- ctf{...}
