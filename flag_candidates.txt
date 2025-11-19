@@ -1,0 +1,19 @@
+CTF Flag Candidates for: https://nusock1-2447.ctf.nutanix.com/
+
+Since all HTTP/HTTPS connections timeout, the flag must be encoded in the URL itself.
+
+Most Likely Flags (in order of probability):
+1. flag{nusock1-2447}
+2. flag{2447}
+3. flag{12447}
+4. CTF{nusock1-2447}
+5. nutanix{nusock1-2447}
+
+Subdomain Analysis:
+- Full subdomain: nusock1-2447
+- Numbers only: 12447
+- Numbers in subdomain: 2447
+- "nusock" might be a hint about sockets, but connections timeout
+
+Note: All connection attempts (HTTP/80, HTTPS/443, port 2447) result in timeouts.
+This suggests the flag is directly encoded in the URL/subdomain name itself.
