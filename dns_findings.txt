@@ -1,0 +1,20 @@
+DNS Investigation for nusecret5-2163.ctf.nutanix.com
+=======================================================
+
+A Records:
+- 44.219.189.194 (ec2-44-219-189-194.compute-1.amazonaws.com)
+- 52.205.182.30 (ec2-52-205-182-30.compute-1.amazonaws.com)
+
+TXT Record:
+- "heritage=external-dns,external-dns/owner=default,external-dns/resource=service/challenges/nusecret5"
+
+Nameservers (ctf.nutanix.com):
+- ns-1053.awsdns-03.org
+- ns-1909.awsdns-46.co.uk
+- ns-45.awsdns-05.com
+- ns-856.awsdns-43.net
+
+Issues Found:
+- HTTP/HTTPS connections timeout (ports 80 and 443 not responding)
+- Service appears to be down or firewalled
+- DNS resolves correctly but application is not accessible

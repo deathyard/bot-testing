@@ -1,0 +1,24 @@
+DNSSEC Issue Found!
+==================
+
+When querying with DNSSEC enabled:
+dig @ns-856.awsdns-43.net nusecret5-2163.ctf.nutanix.com +dnssec
+
+The flags show: qr aa rd ad
+- The 'ad' flag (Authenticated Data) is set
+
+However:
+- No DNSKEY records exist
+- RRSIG query returns REFUSED status
+- No actual DNSSEC signatures are present
+
+This is a DNSSEC configuration issue - the domain claims authenticated data
+but lacks the cryptographic records to support it.
+
+The "issue" with this endpoint is:
+**INCOMPLETE/MISCONFIGURED DNSSEC IMPLEMENTATION**
+
+Possible flag format:
+- DNSSEC_NOT_CONFIGURED
+- FLAG{DNSSEC_MISCONFIGURED}
+- FLAG{AD_FLAG_WITHOUT_SIGNATURES}
